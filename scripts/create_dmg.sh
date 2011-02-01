@@ -22,6 +22,7 @@ iconSize="80";
 dmgName="$name-$version.dmg"
 dmgPath="build/$dmgName"
 dmgTempPath="build/temp.dmg"
+tempPath="/private/tmp/build/dmgTemp"
 volumeName="$name"
 imgBackground="./Dependencies/GPGTools_Core/images/background_dmg.example.png";
 imgDmg="./Dependencies/GPGTools_Core/images/icon_dmg.icns";
@@ -56,25 +57,22 @@ if [ "x$input" == "xy" -o "x$input" == "xY" ] ;then
 	echo "Removing old files..."
 	rm -f "$dmgTempPath"
 	rm -f "$dmgPath"
-	rm -rf "build/dmgTemp"
+	rm -rf "$tempPath"
 
 	echo "Creating temp folder..."
-	mkdir -p build/dmgTemp
+	mkdir -p "$tempPath"
 
 	echo "Copying files..."
+    cp -PR "$appPath" "$tempPath/"
 	if [ "" != "$rmPath" ]; then
-        "$pathSetIcon"/setfileicon "$imgTrash" "$rmPath"
-        cp -PR "$rmPath" build/dmgTemp/
+        cp -PR "$rmPath" "$tempPath/"
     fi
-    "$pathSetIcon"/setfileicon "$imgInstaller" "$appPath"
-    cp -PR "$appPath" build/dmgTemp/
-	mkdir build/dmgTemp/.background
-	cp "$imgBackground" build/dmgTemp/.background/Background.png
-	cp "$imgDmg" build/dmgTemp/.VolumeIcon.icns
-
+	mkdir "$tempPath/.background"
+	cp "$imgBackground" "$tempPath/.background/Background.png"
+	cp "$imgDmg" "$tempPath/.VolumeIcon.icns"
 
 	echo "Creating DMG..."
-	hdiutil create -scrub -quiet -fs HFS+ -fsargs "-c c=64,a=16,e=16" -format UDRW -srcfolder build/dmgTemp -volname "$volumeName" "$dmgTempPath"
+	hdiutil create -scrub -quiet -fs HFS+ -fsargs "-c c=64,a=16,e=16" -format UDRW -srcfolder "$tempPath" -volname "$volumeName" "$dmgTempPath"
 	mountInfo=$(hdiutil attach -readwrite -noverify "$dmgTempPath")
 	device=$(echo "$mountInfo" | head -1 | cut -d " " -f 1)
 	mountPoint=$(echo "$mountInfo" | tail -1 | sed -En 's/([^	]+[	]+){2}//p')
@@ -123,6 +121,11 @@ EOT1
 
 	chmod -Rf +r,go-w "$mountPoint"
 	rm -r "$mountPoint/.Trashes" "$mountPoint/.fseventsd"
+    "$pathSetIcon"/setfileicon "$imgInstaller" "$mountPoint/$appName"
+	if [ "" != "$rmPath" ]; then
+        "$pathSetIcon"/setfileicon "$imgTrash" "$mountPoint/$rmName"
+    fi
+
 	hdiutil detach -quiet "$mountPoint"
 	hdiutil convert "$dmgTempPath" -quiet -format UDZO -imagekey zlib-level=9 -o "$dmgPath"
 
@@ -130,7 +133,7 @@ EOT1
 	open "$dmgPath"
 
 	echo "Cleanup..."
-	rm -rf build/dmgTemp
+	rm -rf "$tempPath"
 	rm -f "$dmgTempPath"
 fi
 #-------------------------------------------------------------------------
