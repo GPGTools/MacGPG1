@@ -36,6 +36,7 @@ _bundleId="gpg";
 # Add some links (force the symlink to be sure)
 ################################################################################
   echo "[$_bundleId] Linking gpg2...";
+  mkdir -p /usr/local/bin/
   rm -f /usr/local/bin/gpg2; ln -s /usr/local/MacGPG2/bin/gpg2 /usr/local/bin/gpg2
   [ ! -e /usr/local/bin/gpg ] && ln -s /usr/local/MacGPG2/bin/gpg2 /usr/local/bin/gpg
 
