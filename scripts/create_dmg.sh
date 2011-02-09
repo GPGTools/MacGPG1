@@ -1,86 +1,125 @@
 #!/bin/bash
 #
-# This script creates a DMG  for GPGTools
+# This script creates a DMG for GPGTools
 #
 # (c) by Felix Co & Alexander Willner & Roman Zechmeister
 #
 
 pushd "$1" > /dev/null
 
+if [ ! -e Makefile.config ]; then
+	echo "Wrong directory..." >&2
+	exit 1
+fi
+
+
+
 #config ------------------------------------------------------------------
-name="Example"
-version="0.1a"
-appName="$name.pkg"
-releaseDir="build/Release/";
-appPkg="$name.pkgproj"
-appPath="$releaseDir/$appName"
+setIcon="./Dependencies/GPGTools_Core/bin/setfileicon"
+imgDmg="./Dependencies/GPGTools_Core/images/icon_dmg.icns"
+imgTrash="./Dependencies/GPGTools_Core/images/icon_uninstaller.icns"
+imgInstaller="./Dependencies/GPGTools_Core/images/icon_installer.icns"
+
+tempPath="$(mktemp -d -t dmgBuild)"
+tempDMG="$tempPath/temp.dmg"
+dmgTempDir="$tempPath/dmg"
+
+
 appPos="160, 220"
-rmName="Uninstall.app"
-rmPath="./$rmName"
 rmPos="370, 220"
-iconSize="80";
-dmgName="$name-$version.dmg"
-dmgPath="build/$dmgName"
-dmgTempPath="build/temp.dmg"
-tempPath="/private/tmp/build/dmgTemp"
-volumeName="$name"
-imgBackground="./Dependencies/GPGTools_Core/images/background_dmg.example.png";
-imgDmg="./Dependencies/GPGTools_Core/images/icon_dmg.icns";
-imgTrash="./Dependencies/GPGTools_Core/images/icon_uninstaller.icns";
-imgInstaller="./Dependencies/GPGTools_Core/images/icon_installer.icns";
-pathSetIcon="./Dependencies/GPGTools_Core/bin/";
+appsLinkPos="410, 130"
+iconSize=80
+textSize=13
+
+unset name version appName appPath bundleName pkgProj rmName appsLink dmgName dmgPath imgBackground html bundlePath rmPath releaseDir volumeName downloadUrl sshKeyname localizeDir
+
+
 source "Makefile.config"
+
+
+releaseDir=${releaseDir:-"build/Release"}
+appName=${appName:-"$name.app"}
+appPath=${appPath:-"$releaseDir/$appName"}
+bundleName=${bundleName:-"$appName"}
+bundlePath=${bundlePath:-"$releaseDir/$bundleName"}
+if [ -z "$version" ]; then
+	version=$(/usr/libexec/PlistBuddy -c "print CFBundleShortVersionString" "$appPath/Contents/Info.plist")
+fi
+dmgName=${dmgName:-"$name-$version.dmg"}
+dmgPath=${dmgPath:-"build/$dmgName"}
+volumeName=${volumeName:-"$name"}
 #-------------------------------------------------------------------------
+
+
 
 
 
 #-------------------------------------------------------------------------
 read -p "Create DMG [y/n]? " input
 
-if [ "x$input" == "xy" -o "x$input" == "xY" ] ;then
-
-	if ( ! test -e Makefile.config ) then
-		echo "Wrong directory..."
-		exit 1;
-	fi
-	if [ "" != "$appPkg" ]; then
-    	if ( test -e /usr/local/bin/packagesbuild ) then
+if [ "x$input" == "xy" -o "x$input" == "xY" ]; then	
+	
+	if [ -n "$pkgProj" ]; then
+    	if [ -e /usr/local/bin/packagesbuild ]; then
 	    	echo "Building the installer..."
-		    /usr/local/bin/packagesbuild "$appPkg"
+		    /usr/local/bin/packagesbuild "$pkgProj"
     	else
-	    	echo "ERROR: You need the Application \"Packages\"!"
-		    echo "get it at http://s.sudre.free.fr/Software/Packages.html"
+	    	echo "ERROR: You need the Application \"Packages\"!" >&2
+		    echo "get it at http://s.sudre.free.fr/Software/Packages.html" >&2
     		exit 1
 	    fi
 	fi
 
+
 	echo "Removing old files..."
-	rm -f "$dmgTempPath"
 	rm -f "$dmgPath"
-	rm -rf "$tempPath"
-
-	echo "Creating temp folder..."
-	mkdir -p "$tempPath"
-
+	
+	
+	echo "Creating temp directory..."
+	mkdir "$dmgTempDir"
+	
+	
 	echo "Copying files..."
-    cp -PR "$appPath" "$tempPath/"
-	if [ "" != "$rmPath" ]; then
-        cp -PR "$rmPath" "$tempPath/"
+    cp -PR "$bundlePath" "$dmgTempDir/"
+	
+	if [ -n "$localizeDir" ]; then
+		mkdir "$dmgTempDir/.localized"
+        cp -PR "$localizeDir/" "$dmgTempDir/.localized/"
     fi
-	mkdir "$tempPath/.background"
-	cp "$imgBackground" "$tempPath/.background/Background.png"
-	cp "$imgDmg" "$tempPath/.VolumeIcon.icns"
+	if [ -n "$rmPath" ]; then
+        cp -PR "$rmPath" "$dmgTempDir/$rmName"
+    fi
+	if [ "0$appsLink" -eq 1 ]; then
+		ln -s /Applications "$dmgTempDir/"
+	fi
+	mkdir "$dmgTempDir/.background"
+	cp "$imgBackground" "$dmgTempDir/.background/Background.png"
+	cp "$imgDmg" "$dmgTempDir/.VolumeIcon.icns"
+
+
+	if [ -n "$pkgProj" ]; then
+		"$setIcon" "$imgInstaller" "$dmgTempDir/$bundleName"
+	fi
+	if [ -n "$rmPath" ]; then
+        "$setIcon" "$imgTrash" "$dmgTempDir/$rmName"
+    fi
+
+
+
+
 
 	echo "Creating DMG..."
-	hdiutil create -scrub -quiet -fs HFS+ -fsargs "-c c=64,a=16,e=16" -format UDRW -srcfolder "$tempPath" -volname "$volumeName" "$dmgTempPath"
-	mountInfo=$(hdiutil attach -readwrite -noverify "$dmgTempPath")
+	hdiutil create -scrub -quiet -fs HFS+ -fsargs "-c c=64,a=16,e=16" -format UDRW -srcfolder "$dmgTempDir" -volname "$volumeName" "$tempDMG"
+	mountInfo=$(hdiutil attach -readwrite -noverify "$tempDMG")
 	device=$(echo "$mountInfo" | head -1 | cut -d " " -f 1)
 	mountPoint=$(echo "$mountInfo" | tail -1 | sed -En 's/([^	]+[	]+){2}//p')
 
-	echo "Setting attributes..."
-		SetFile -a C "$mountPoint"
 
-		osascript >/dev/null << EOT1
+
+	echo "Setting attributes..."
+	SetFile -a C "$mountPoint"
+
+	osascript >/dev/null <<-EOT
 		tell application "Finder"
 			tell disk "$volumeName"
 				open
@@ -90,51 +129,55 @@ if [ "x$input" == "xy" -o "x$input" == "xY" ] ;then
 				set statusbar visible of container window to false
 				set bounds of container window to {400, 200, 580 + 400, 320 + 200}
 				set arrangement of viewOptions to not arranged
-				set icon size of viewOptions to 64
-				set text size of viewOptions to 13
+				set icon size of viewOptions to $iconSize
+				set text size of viewOptions to $textSize
 				set background picture of viewOptions to file ".background:Background.png"
-    			set position of item "$appName" of container window to {$appPos}
+				set position of item "$bundleName" of container window to {$appPos}
 			end tell
 		end tell
-EOT1
+	EOT
 
-if [ "" != "$rmName" ]; then
-    osascript >/dev/null << EOT1
-	tell application "Finder"
-		tell disk "$volumeName"
-			set position of item "$rmName" of container window to {$rmPos}
+	if [ -n "$rmName" ]; then # Set position of the Uninstaller
+		osascript >/dev/null <<-EOT
+			tell application "Finder"
+				tell disk "$volumeName"
+					set position of item "$rmName" of container window to {$rmPos}
+				end tell
+			end tell
+		EOT
+	fi
+	if [ "0$appsLink" -eq 1 ]; then # Set position of the Symlink to /Applications
+		osascript >/dev/null <<-EOT
+			tell application "Finder"
+				tell disk "$volumeName"
+					set position of item "Applications" of container window to {$appsLinkPos}
+				end tell
+			end tell
+		EOT
+	fi
+
+	osascript >/dev/null <<-EOT
+		tell application "Finder"
+			tell disk "$volumeName"
+				update without registering applications
+				close
+			end tell
 		end tell
-	end tell
-EOT1
-fi
-
-osascript >/dev/null << EOT1
-	tell application "Finder"
-		tell disk "$volumeName"
-			update without registering applications
-			close
-		end tell
-	end tell
-EOT1
-
+	EOT
 
 
 	chmod -Rf +r,go-w "$mountPoint"
 	rm -r "$mountPoint/.Trashes" "$mountPoint/.fseventsd"
-    "$pathSetIcon"/setfileicon "$imgInstaller" "$mountPoint/$appName"
-	if [ "" != "$rmPath" ]; then
-        "$pathSetIcon"/setfileicon "$imgTrash" "$mountPoint/$rmName"
-    fi
 
+
+
+	echo "Convert DMG..."
 	hdiutil detach -quiet "$mountPoint"
-	hdiutil convert "$dmgTempPath" -quiet -format UDZO -imagekey zlib-level=9 -o "$dmgPath"
+	hdiutil convert "$tempDMG" -quiet -format UDZO -imagekey zlib-level=9 -o "$dmgPath"
+
 
 	echo -e "DMG created\n\n"
-	open "$dmgPath"
-
-	echo "Cleanup..."
-	rm -rf "$tempPath"
-	rm -f "$dmgTempPath"
+	#open "$dmgPath"
 fi
 #-------------------------------------------------------------------------
 
@@ -142,7 +185,7 @@ fi
 #-------------------------------------------------------------------------
 read -p "Create a detached signature [y/n]? " input
 
-if [ "x$input" == "xy" -o "x$input" == "xY" ] ;then
+if [ "x$input" == "xy" -o "x$input" == "xY" ]; then
 	echo "Removing old signature..."
 	rm -f "$dmgPath.sig"
 
@@ -157,8 +200,8 @@ fi
 ####################################################
 read -p "Create Sparkle appcast entry [y/n]? " input
 
-if [ "x$input" == "xy" -o "x$input" == "xY" ] ;then
-	PRIVATE_KEY_NAME="$sparkle_keyname"
+if [ "x$input" == "xy" -o "x$input" == "xY" ]; then
+	PRIVATE_KEY_NAME="$sshKeyname"
 
 	signature=$(openssl dgst -sha1 -binary < "$dmgPath" |
 	  openssl dgst -dss1 -sign <(security find-generic-password -g -s "$PRIVATE_KEY_NAME" 2>&1 >/dev/null | perl -pe '($_) = /<key>NOTE<\/key>.*<string>(.*)<\/string>/; s/\\012/\n/g') |
@@ -166,23 +209,23 @@ if [ "x$input" == "xy" -o "x$input" == "xY" ] ;then
 
 	date=$(LC_TIME=en_US date +"%a, %d %b %G %T %z")
 	size=$(stat -f "%z" "$dmgPath")
-	echo -e "\n"
+	echo -e "\n====== Sparkle appcast: ======\n"
 
-	cat <<EOT2
-<item>
-	<title>Version ${version}</title>
-	<description>Visit http://www.gpgtools.org/$html.html for further information.</description>
-	<sparkle:releaseNotesLink>http://www.gpgtools.org/$html_sparkle.html</sparkle:releaseNotesLink>
-	<pubDate>${date}</pubDate>
-	<enclosure url="$sparkle_url"
-			   sparkle:version="${version}"
-			   sparkle:dsaSignature="${signature}"
-			   length="${size}"
-			   type="application/octet-stream" />
-</item>
-EOT2
+	cat <<-EOT
+		<item>
+			<title>Version ${version}</title>
+			<description>Visit http://www.gpgtools.org/$html.html for further information.</description>
+			<sparkle:releaseNotesLink>http://www.gpgtools.org/$html_sparkle.html</sparkle:releaseNotesLink>
+			<pubDate>${date}</pubDate>
+			<enclosure url="$downloadUrl"
+					   sparkle:version="${version}"
+					   sparkle:dsaSignature="${signature}"
+					   length="${size}"
+					   type="application/octet-stream" />
+		</item>
+	EOT
 
-	echo
+	echo -e "\n==============================\n"
 fi
 #-------------------------------------------------------------------------
 
@@ -191,10 +234,15 @@ fi
 ## todo: implement this
 ####################################################
 read -p "Create github tag [y/n]? " input
-if [ "x$input" == "xy" -o "x$input" == "xY" ] ;then
-    echo "to be implemented. start this e.g. for each release";
+if [ "x$input" == "xy" -o "x$input" == "xY" ]; then
+    echo "to be implemented. start this e.g. for each release"
 fi
 #-------------------------------------------------------------------------
 
 
+echo "Cleanup..."
+rm -rf "$tempPath"
+
+
 popd > /dev/null
+
