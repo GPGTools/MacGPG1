@@ -57,8 +57,8 @@ volumeName=${volumeName:-"$name"}
 #-------------------------------------------------------------------------
 read -p "Create DMG [y/n]? " input
 
-if [ "x$input" == "xy" -o "x$input" == "xY" ]; then	
-	
+if [ "x$input" == "xy" -o "x$input" == "xY" ]; then
+
 	if [ -n "$pkgProj" ]; then
     	if [ -e /usr/local/bin/packagesbuild ]; then
 	    	echo "Building the installer..."
@@ -73,20 +73,19 @@ if [ "x$input" == "xy" -o "x$input" == "xY" ]; then
 
 	echo "Removing old files..."
 	rm -f "$dmgPath"
-	
-	
+
+
 	echo "Creating temp directory..."
 	mkdir "$dmgTempDir"
-	
-	
+
 	echo "Copying files..."
     cp -PR "$bundlePath" "$dmgTempDir/"
-	
+
 	if [ -n "$localizeDir" ]; then
 		mkdir "$dmgTempDir/.localized"
         cp -PR "$localizeDir/" "$dmgTempDir/.localized/"
     fi
-	if [ -n "$rmPath" ]; then
+    if [ -n "$rmPath" ]; then
         cp -PR "$rmPath" "$dmgTempDir/$rmName"
     fi
 	if [ "0$appsLink" -eq 1 ]; then
