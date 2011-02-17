@@ -174,9 +174,14 @@ if [ "x$input" == "xy" -o "x$input" == "xY" ]; then
 	hdiutil detach -quiet "$mountPoint"
 	hdiutil convert "$tempDMG" -quiet -format UDZO -imagekey zlib-level=9 -o "$dmgPath"
 
-
-	echo -e "DMG created\n\n"
-	#open "$dmgPath"
+	echo "Information...";
+	date=$(LC_TIME=en_US date +"%a, %d %b %G %T %z")
+	size=$(stat -f "%z" "$dmgPath")
+    sha1=$(shasum "$dmgPath")
+    echo " * Filename: $dmgPath";
+    echo " * Size: $size";
+    echo " * Date: $date";
+    echo " * SHA1: $sha1";
 fi
 #-------------------------------------------------------------------------
 
