@@ -31,7 +31,7 @@ appsLinkPos="410, 130"
 iconSize=80
 textSize=13
 
-unset name version appName appPath bundleName pkgProj rmName appsLink dmgName dmgPath imgBackground html bundlePath rmPath releaseDir volumeName downloadUrl sshKeyname localizeDir
+unset name version appName appPath bundleName pkgProj rmName appsLink dmgName dmgPath imgBackground html bundlePath rmPath releaseDir volumeName downloadUrl downloadUrlPrefix sshKeyname localizeDir
 
 
 source "Makefile.config"
@@ -48,6 +48,7 @@ fi
 dmgName=${dmgName:-"$name-$version.dmg"}
 dmgPath=${dmgPath:-"build/$dmgName"}
 volumeName=${volumeName:-"$name"}
+downloadUrl=${downloadUrl:-"${downloadUrlPrefix}${dmgName}"}
 #-------------------------------------------------------------------------
 
 
