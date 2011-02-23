@@ -1,0 +1,5 @@
+MacGPG1 1.4.11-1
+
+((tbd))
+
+For further details have a look at http://gpgtools.org.
