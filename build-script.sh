@@ -37,7 +37,7 @@ fi
 tar -xzf "$version$fileExt";
 cd "$version";
 
-./configure CFLAGS="-arch x86_64 -arch i386" --disable-dependency-tracking --disable-asm --prefix="$target" && \
+./configure CFLAGS="-arch ppc -arch x86_64 -arch i386" --disable-dependency-tracking --disable-asm --prefix="$target" && \
 make && \
 make check
 
