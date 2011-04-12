@@ -11,3 +11,7 @@ clean:
 
 dmg: init
 	./Dependencies/GPGTools_Core/scripts/create_dmg.sh
+
+update: init
+	git submodule foreach git pull origin master
+	git pull
