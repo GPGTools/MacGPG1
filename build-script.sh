@@ -13,7 +13,8 @@ version="gnupg-1.4.11";
 fileExt=".tar.gz";
 sigExt=".tar.gz.sig"
 build="`pwd`/build/gnupg";
-target="`pwd`/build/MacGPG1";
+prefix_build="`pwd`/build/MacGPG1";
+prefix_install="/usr/local/MacGPG1"
 gpgFile="Makefile.gpg";
 
 pushd "$1" > /dev/null
@@ -38,16 +39,22 @@ tar -xzf "$version$fileExt";
 cd "$version";
 export MACOSX_DEPLOYMENT_TARGET="10.5"
 export CFLAGS="-mmacosx-version-min=10.5 -DUNIX -isysroot /Developer/SDKs/MacOSX10.5.sdk -arch i386 -arch ppc"
-./configure --enable-static=yes --disable-endian-check --disable-dependency-tracking --disable-asm --enable-osx-universal-binaries --prefix="$target" && \
-make -j2 && \
-make check
+./configure \
+  --enable-static=yes \
+  --disable-endian-check \
+  --disable-dependency-tracking \
+  --disable-asm \
+  --enable-osx-universal-binaries \
+  --prefix="$prefix_install" && \
+make -j2
+#&& \
+#make check
 
 if [ "$?" != "0" ]; then
     echo "Could not compile the sources!";
     exit 1;
 fi
 
-make install
-make -e prefix="$target" install
+make prefix="$prefix_build" install
 
 popd > /dev/null
