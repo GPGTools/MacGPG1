@@ -36,9 +36,10 @@ fi
 
 tar -xzf "$version$fileExt";
 cd "$version";
-
-./configure CFLAGS="-arch ppc -arch x86_64 -arch i386" --disable-dependency-tracking --disable-asm --prefix="$target" && \
-make && \
+export MACOSX_DEPLOYMENT_TARGET="10.5"
+export CFLAGS="-mmacosx-version-min=10.5 -DUNIX -isysroot /Developer/SDKs/MacOSX10.5.sdk -arch i386 -arch ppc"
+./configure --enable-static=yes --disable-endian-check --disable-dependency-tracking --disable-asm --enable-osx-universal-binaries --prefix="$target" && \
+make -j2 && \
 make check
 
 if [ "$?" != "0" ]; then
