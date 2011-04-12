@@ -47,5 +47,6 @@ if [ "$?" != "0" ]; then
 fi
 
 make install
+make -e prefix="$target" install
 
 popd > /dev/null
