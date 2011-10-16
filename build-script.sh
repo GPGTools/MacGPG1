@@ -37,14 +37,15 @@ fi
 
 tar -xzf "$version$fileExt";
 cd "$version";
-export MACOSX_DEPLOYMENT_TARGET="10.5"
-export CFLAGS="-mmacosx-version-min=10.5 -DUNIX -isysroot /Developer/SDKs/MacOSX10.5.sdk -arch i386 -arch ppc"
+#export MACOSX_DEPLOYMENT_TARGET="10.5"
+#export CFLAGS="-mmacosx-version-min=10.5 -DUNIX -isysroot /Developer/SDKs/MacOSX10.5.sdk -arch i386 -arch ppc"
+export MACOSX_DEPLOYMENT_TARGET="10.6"
+export CFLAGS="-mmacosx-version-min=10.6 -DUNIX -isysroot /Developer/SDKs/MacOSX10.6.sdk -arch x86_64"
 ./configure \
   --enable-static=yes \
   --disable-endian-check \
   --disable-dependency-tracking \
   --disable-asm \
-  --enable-osx-universal-binaries \
   --prefix="$prefix_install" && \
 make -j2
 #&& \
