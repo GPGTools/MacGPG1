@@ -20,6 +20,12 @@ prefix_install="/usr/local/MacGPG1"
 gpgFile="Makefile.gpg";
 ################################################################################
 
+if [ "$1" == "check" ]; then
+	cd "$build/$version"
+	make check
+	exit $?
+fi
+
 ################################################################################
 os_ver=`sw_vers -productVersion|cut -f2 -d'.'`
 if [ $os_ver -ge 7 ]; then
