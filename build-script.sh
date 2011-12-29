@@ -39,7 +39,7 @@ fi
 
 pushd "$1" > /dev/null
 
-gpg --import "$gpgFile";
+[ "`which gpg`" != "" ] && gpg --import "$gpgFile";
 mkdir -p "$build";
 mkdir -p "$target";
 cd "$build";
@@ -48,7 +48,7 @@ if [ ! -e "$version$fileExt" ]; then
     curl -O "$url$version$fileExt"
     curl -O "$url$version$sigExt"
 fi
-gpg --verify "$version$sigExt"
+[ "`which gpg`" != "" ] && gpg --verify "$version$sigExt"
 
 if [ "$?" != "0" ]; then
     echo "Could not get the sources!";
