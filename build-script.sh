@@ -45,14 +45,19 @@ mkdir -p "$target";
 cd "$build";
 
 if [ ! -e "$version$fileExt" ]; then
-    curl -O "$url$version$fileExt"
-    curl -O "$url$version$sigExt"
+    curl -O "$url$version$fileExt" && curl -O "$url$version$sigExt"
+    if [ "$?" != "0" ]; then
+        echo "Could not get the sources!";
+        exit 1;
+    fi
 fi
-[ "`which gpg`" != "" ] && gpg --verify "$version$sigExt"
 
-if [ "$?" != "0" ]; then
-    echo "Could not get the sources!";
-    exit 1;
+if [ "`which gpg`" != "" ]; then
+    gpg --verify "$version$sigExt"
+    if [ "$?" != "0" ]; then
+        echo "Could not verify the sources!";
+      exit 1;
+    fi
 fi
 
 tar -xzf "$version$fileExt";
