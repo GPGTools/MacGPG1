@@ -28,7 +28,8 @@ fi
 
 ################################################################################
 os_ver=`sw_vers -productVersion|cut -f2 -d'.'`
-if [ $os_ver -ge 7 ]; then
+#todo: check for ppc gcc and instaleld sdk here instead
+if [ $os_ver -ge 6 ]; then
     export MACOSX_DEPLOYMENT_TARGET="10.6"
     export CFLAGS="-mmacosx-version-min=10.6 -DUNIX -isysroot /Developer/SDKs/MacOSX10.6.sdk -arch x86_64"
 else
