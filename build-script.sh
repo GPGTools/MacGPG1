@@ -26,15 +26,35 @@ if [ "$1" == "check" ]; then
 	exit $?
 fi
 
+function iSysrootFlag {
+	sdk_version=$1
+	sdk_versions="$sdk_version 10.8 10.7"
+	xcode_path=$(xcode-select -print-path)
+	if [ "$xcode_path" == "/Applications/Xcode.app/Contents/Developer" ]; then
+		sdks_path="$xcode_path/Platforms/MacOSX.platform/Developer/SDKs"
+	else
+		sdks_path="$xcode_path/SDKs"
+	fi
+	
+	# Check if the requested version is available
+	for version in $sdk_versions; do
+		sdk_path="$sdks_path/MacOSX${version}.sdk"
+		if [ -d "$sdk_path" ]; then
+			echo "-isysroot $sdk_path"
+			break
+		fi
+	done
+}
+
 ################################################################################
 os_ver=`sw_vers -productVersion|cut -f2 -d'.'`
 #todo: check for ppc gcc and instaleld sdk here instead
 if [ $os_ver -ge 6 ]; then
     export MACOSX_DEPLOYMENT_TARGET="10.6"
-    export CFLAGS="-mmacosx-version-min=10.6 -DUNIX -isysroot /Developer/SDKs/MacOSX10.6.sdk -arch x86_64"
+    export CFLAGS="-mmacosx-version-min=10.6 -DUNIX $(iSysrootFlag "10.6") -arch x86_64"
 else
     export MACOSX_DEPLOYMENT_TARGET="10.5"
-    export CFLAGS="-mmacosx-version-min=10.5 -DUNIX -isysroot /Developer/SDKs/MacOSX10.5.sdk -arch i386 -arch ppc"
+    export CFLAGS="-mmacosx-version-min=10.5 -DUNIX $(iSysrootFlag "10.5") -arch i386 -arch ppc"
 fi
 ################################################################################
 
