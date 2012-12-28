@@ -11,7 +11,7 @@
 
 ################################################################################
 url="ftp://ftp.gnupg.org/gcrypt/gnupg/";
-version="gnupg-1.4.12";
+version="gnupg-1.4.13";
 fileExt=".tar.gz";
 sigExt=".tar.gz.sig"
 build="`pwd`/build/gnupg";
