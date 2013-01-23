@@ -5,538 +5,24 @@
 	<key>PACKAGES</key>
 	<array>
 		<dict>
-			<key>PACKAGE_FILES</key>
-			<dict>
-				<key>DEFAULT_INSTALL_LOCATION</key>
-				<string>/</string>
-				<key>HIERARCHY</key>
-				<dict>
-					<key>CHILDREN</key>
-					<array>
-						<dict>
-							<key>CHILDREN</key>
-							<array>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>80</integer>
-									<key>PATH</key>
-									<string>Utilities</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>509</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-							</array>
-							<key>GID</key>
-							<integer>80</integer>
-							<key>PATH</key>
-							<string>Applications</string>
-							<key>PATH_TYPE</key>
-							<integer>0</integer>
-							<key>PERMISSIONS</key>
-							<integer>509</integer>
-							<key>TYPE</key>
-							<integer>1</integer>
-							<key>UID</key>
-							<integer>0</integer>
-						</dict>
-						<dict>
-							<key>CHILDREN</key>
-							<array>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>80</integer>
-									<key>PATH</key>
-									<string>Application Support</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>509</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>80</integer>
-									<key>PATH</key>
-									<string>Documentation</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>509</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>0</integer>
-									<key>PATH</key>
-									<string>Filesystems</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>509</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>80</integer>
-									<key>PATH</key>
-									<string>Frameworks</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>509</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>80</integer>
-									<key>PATH</key>
-									<string>Internet Plug-Ins</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>509</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>0</integer>
-									<key>PATH</key>
-									<string>LaunchAgents</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>493</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>0</integer>
-									<key>PATH</key>
-									<string>LaunchDaemons</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>493</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>0</integer>
-									<key>PATH</key>
-									<string>PreferencePanes</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>493</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>80</integer>
-									<key>PATH</key>
-									<string>Preferences</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>509</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>80</integer>
-									<key>PATH</key>
-									<string>Printers</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>509</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>0</integer>
-									<key>PATH</key>
-									<string>PrivilegedHelperTools</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>1005</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>80</integer>
-									<key>PATH</key>
-									<string>QuickTime</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>509</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>80</integer>
-									<key>PATH</key>
-									<string>Screen Savers</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>509</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>80</integer>
-									<key>PATH</key>
-									<string>Scripts</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>509</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>80</integer>
-									<key>PATH</key>
-									<string>Services</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>509</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>0</integer>
-									<key>PATH</key>
-									<string>Widgets</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>493</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-							</array>
-							<key>GID</key>
-							<integer>80</integer>
-							<key>PATH</key>
-							<string>Library</string>
-							<key>PATH_TYPE</key>
-							<integer>0</integer>
-							<key>PERMISSIONS</key>
-							<integer>1021</integer>
-							<key>TYPE</key>
-							<integer>1</integer>
-							<key>UID</key>
-							<integer>0</integer>
-						</dict>
-						<dict>
-							<key>CHILDREN</key>
-							<array>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>80</integer>
-									<key>PATH</key>
-									<string>../Payload/private/etc</string>
-									<key>PATH_TYPE</key>
-									<integer>1</integer>
-									<key>PERMISSIONS</key>
-									<integer>493</integer>
-									<key>TYPE</key>
-									<integer>3</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-							</array>
-							<key>GID</key>
-							<integer>80</integer>
-							<key>PATH</key>
-							<string>private</string>
-							<key>PATH_TYPE</key>
-							<integer>0</integer>
-							<key>PERMISSIONS</key>
-							<integer>509</integer>
-							<key>TYPE</key>
-							<integer>2</integer>
-							<key>UID</key>
-							<integer>0</integer>
-						</dict>
-						<dict>
-							<key>CHILDREN</key>
-							<array>
-								<dict>
-									<key>CHILDREN</key>
-									<array>
-										<dict>
-											<key>CHILDREN</key>
-											<array/>
-											<key>GID</key>
-											<integer>0</integer>
-											<key>PATH</key>
-											<string>Extensions</string>
-											<key>PATH_TYPE</key>
-											<integer>0</integer>
-											<key>PERMISSIONS</key>
-											<integer>493</integer>
-											<key>TYPE</key>
-											<integer>1</integer>
-											<key>UID</key>
-											<integer>0</integer>
-										</dict>
-									</array>
-									<key>GID</key>
-									<integer>0</integer>
-									<key>PATH</key>
-									<string>Library</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>493</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-							</array>
-							<key>GID</key>
-							<integer>0</integer>
-							<key>PATH</key>
-							<string>System</string>
-							<key>PATH_TYPE</key>
-							<integer>0</integer>
-							<key>PERMISSIONS</key>
-							<integer>493</integer>
-							<key>TYPE</key>
-							<integer>1</integer>
-							<key>UID</key>
-							<integer>0</integer>
-						</dict>
-						<dict>
-							<key>CHILDREN</key>
-							<array>
-								<dict>
-									<key>CHILDREN</key>
-									<array/>
-									<key>GID</key>
-									<integer>0</integer>
-									<key>PATH</key>
-									<string>Shared</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>1023</integer>
-									<key>TYPE</key>
-									<integer>1</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-							</array>
-							<key>GID</key>
-							<integer>80</integer>
-							<key>PATH</key>
-							<string>Users</string>
-							<key>PATH_TYPE</key>
-							<integer>0</integer>
-							<key>PERMISSIONS</key>
-							<integer>493</integer>
-							<key>TYPE</key>
-							<integer>1</integer>
-							<key>UID</key>
-							<integer>0</integer>
-						</dict>
-						<dict>
-							<key>CHILDREN</key>
-							<array>
-								<dict>
-									<key>CHILDREN</key>
-									<array>
-										<dict>
-											<key>CHILDREN</key>
-											<array/>
-											<key>GID</key>
-											<integer>80</integer>
-											<key>PATH</key>
-											<string>../build/MacGPG1</string>
-											<key>PATH_TYPE</key>
-											<integer>1</integer>
-											<key>PERMISSIONS</key>
-											<integer>493</integer>
-											<key>TYPE</key>
-											<integer>3</integer>
-											<key>UID</key>
-											<integer>0</integer>
-										</dict>
-									</array>
-									<key>GID</key>
-									<integer>80</integer>
-									<key>PATH</key>
-									<string>local</string>
-									<key>PATH_TYPE</key>
-									<integer>0</integer>
-									<key>PERMISSIONS</key>
-									<integer>509</integer>
-									<key>TYPE</key>
-									<integer>2</integer>
-									<key>UID</key>
-									<integer>0</integer>
-								</dict>
-							</array>
-							<key>GID</key>
-							<integer>80</integer>
-							<key>PATH</key>
-							<string>usr</string>
-							<key>PATH_TYPE</key>
-							<integer>0</integer>
-							<key>PERMISSIONS</key>
-							<integer>509</integer>
-							<key>TYPE</key>
-							<integer>2</integer>
-							<key>UID</key>
-							<integer>0</integer>
-						</dict>
-					</array>
-					<key>GID</key>
-					<integer>80</integer>
-					<key>PATH</key>
-					<string>/</string>
-					<key>PATH_TYPE</key>
-					<integer>0</integer>
-					<key>PERMISSIONS</key>
-					<integer>1021</integer>
-					<key>TYPE</key>
-					<integer>1</integer>
-					<key>UID</key>
-					<integer>0</integer>
-				</dict>
-				<key>PAYLOAD_TYPE</key>
-				<integer>0</integer>
-				<key>VERSION</key>
-				<integer>1</integer>
-			</dict>
-			<key>PACKAGE_SCRIPTS</key>
-			<dict>
-				<key>POSTINSTALL_PATH</key>
-				<dict>
-					<key>PATH</key>
-					<string>postflight.sh</string>
-					<key>PATH_TYPE</key>
-					<integer>1</integer>
-				</dict>
-				<key>PREINSTALL_PATH</key>
-				<dict/>
-				<key>RESOURCES</key>
-				<array/>
-			</dict>
 			<key>PACKAGE_SETTINGS</key>
 			<dict>
-				<key>AUTHENTICATION</key>
-				<true/>
-				<key>CONCLUSION_ACTION</key>
+				<key>LOCATION</key>
 				<integer>0</integer>
-				<key>IDENTIFIER</key>
-				<string>org.gpgtools.macgpg1</string>
 				<key>NAME</key>
 				<string>MacGPG1</string>
-				<key>OVERWRITE_PERMISSIONS</key>
-				<false/>
-				<key>RELOCATABLE</key>
-				<false/>
-				<key>VERSION</key>
-				<string>1.4.12-1</string>
 			</dict>
+			<key>PATH</key>
+			<dict>
+				<key>PATH</key>
+				<string>../build/MacGPG1_Core.pkg</string>
+				<key>PATH_TYPE</key>
+				<integer>1</integer>
+			</dict>
+			<key>TYPE</key>
+			<integer>1</integer>
 			<key>UUID</key>
-			<string>5BCCF690-7295-423B-89B3-5BAC72D8B16A</string>
+			<string>F5D0DA31-3582-461A-BACD-F1D02A24B057</string>
 		</dict>
 	</array>
 	<key>PROJECT</key>
@@ -553,7 +39,7 @@
 			ZW50LVN0eWxlLVR5cGUiIGNvbnRlbnQ9InRleHQvY3NzIj4KPHRp
 			dGxlPjwvdGl0bGU+CjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29u
 			dGVudD0iQ29jb2EgSFRNTCBXcml0ZXIiPgo8bWV0YSBuYW1lPSJD
-			b2NvYVZlcnNpb24iIGNvbnRlbnQ9IjEwMzguMzUiPgo8c3R5bGUg
+			b2NvYVZlcnNpb24iIGNvbnRlbnQ9IjExODcuMzQiPgo8c3R5bGUg
 			dHlwZT0idGV4dC9jc3MiPgo8L3N0eWxlPgo8L2hlYWQ+Cjxib2R5
 			Pgo8L2JvZHk+CjwvaHRtbD4K
 			</data>
@@ -567,12 +53,12 @@
 				<key>BACKGROUND_PATH</key>
 				<dict>
 					<key>PATH</key>
-					<string>background_installer.png</string>
+					<string>../Installer/background_installer.png</string>
 					<key>PATH_TYPE</key>
 					<integer>1</integer>
 				</dict>
 				<key>CUSTOM</key>
-				<integer>1</integer>
+				<true/>
 				<key>SCALING</key>
 				<integer>2</integer>
 			</dict>
@@ -595,9 +81,7 @@
 									<integer>1</integer>
 								</dict>
 								<key>PACKAGE_UUID</key>
-								<string>5BCCF690-7295-423B-89B3-5BAC72D8B16A</string>
-								<key>REQUIREMENTS</key>
-								<array/>
+								<string>F5D0DA31-3582-461A-BACD-F1D02A24B057</string>
 								<key>TITLE</key>
 								<array/>
 								<key>TOOLTIP</key>
@@ -605,7 +89,7 @@
 								<key>TYPE</key>
 								<integer>0</integer>
 								<key>UUID</key>
-								<string>3B9B2196-E2AB-44E4-891E-42F13E45C6E2</string>
+								<string>7991E3B2-4E1C-469E-9844-57D04133D13A</string>
 							</dict>
 						</array>
 						<key>REMOVED</key>
@@ -686,7 +170,7 @@
 						<key>VALUE</key>
 						<dict>
 							<key>PATH</key>
-							<string>INSTALLER.txt</string>
+							<string>../Installer/introduction.rtf</string>
 							<key>PATH_TYPE</key>
 							<integer>1</integer>
 						</dict>
@@ -720,7 +204,7 @@
 						<key>LANGUAGE</key>
 						<string>English</string>
 						<key>VALUE</key>
-						<string>GPGServices</string>
+						<string>MacGPG1</string>
 					</dict>
 				</array>
 			</dict>
@@ -728,38 +212,7 @@
 		<key>PROJECT_REQUIREMENTS</key>
 		<dict>
 			<key>LIST</key>
-			<array>
-				<dict>
-					<key>BEHAVIOR</key>
-					<integer>3</integer>
-					<key>DICTIONARY</key>
-					<dict>
-						<key>IC_REQUIREMENT_OS_DISK_TYPE</key>
-						<integer>0</integer>
-						<key>IC_REQUIREMENT_OS_DISTRIBUTION_TYPE</key>
-						<integer>0</integer>
-						<key>IC_REQUIREMENT_OS_MINIMUM_VERSION</key>
-						<integer>100500</integer>
-					</dict>
-					<key>IC_REQUIREMENT_CHECK_TYPE</key>
-					<integer>1</integer>
-					<key>IDENTIFIER</key>
-					<string>fr.whitebox.Packages.requirement.os</string>
-					<key>MESSAGE</key>
-					<array>
-						<dict>
-							<key>LANGUAGE</key>
-							<string>English</string>
-							<key>VALUE</key>
-							<string>You can only install it on an OS X disk.</string>
-						</dict>
-					</array>
-					<key>NAME</key>
-					<string>Operating System</string>
-					<key>STATE</key>
-					<true/>
-				</dict>
-			</array>
+			<array/>
 			<key>POSTINSTALL_PATH</key>
 			<dict/>
 			<key>PREINSTALL_PATH</key>
@@ -767,7 +220,7 @@
 			<key>RESOURCES</key>
 			<array/>
 			<key>ROOT_VOLUME_ONLY</key>
-			<false/>
+			<true/>
 		</dict>
 		<key>PROJECT_SETTINGS</key>
 		<dict>
@@ -861,13 +314,29 @@
 							<key>TYPE</key>
 							<integer>1</integer>
 						</dict>
+						<dict>
+							<key>REGULAR_EXPRESSION</key>
+							<false/>
+							<key>STRING</key>
+							<string>.git</string>
+							<key>TYPE</key>
+							<integer>1</integer>
+						</dict>
+						<dict>
+							<key>REGULAR_EXPRESSION</key>
+							<false/>
+							<key>STRING</key>
+							<string>.gitignore</string>
+							<key>TYPE</key>
+							<integer>0</integer>
+						</dict>
 					</array>
 					<key>PROTECTED</key>
 					<true/>
 					<key>PROXY_NAME</key>
 					<string>Remove SCM metadata</string>
 					<key>PROXY_TOOLTIP</key>
-					<string>Remove helper files and folders used by the CVS and SVN Source Code Management systems.</string>
+					<string>Remove helper files and folders used by the CVS, SVN or Git Source Code Management systems.</string>
 					<key>STATE</key>
 					<true/>
 				</dict>

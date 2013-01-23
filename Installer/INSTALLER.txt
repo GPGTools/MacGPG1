@@ -1,6 +1,0 @@
-Thank you for installing MacGPG1.
-Version: 1.4.12-1
-
-This will allow you to use OpenPGP on OS X.
-
-For further details have a look at http://gpgtools.org.

@@ -17,7 +17,7 @@ sigExt=".tar.gz.sig"
 build="`pwd`/build/gnupg";
 prefix_build="`pwd`/build/MacGPG1";
 prefix_install="/usr/local/MacGPG1"
-gpgFile="Makefile.gpg";
+gpgKeysFile="GnuPG Keys.gpg";
 ################################################################################
 
 if [ "$1" == "check" ]; then
@@ -60,7 +60,7 @@ fi
 
 pushd "$1" > /dev/null
 
-[ "`which gpg`" != "" ] && gpg --import "$gpgFile";
+[ "`which gpg`" != "" ] && gpg --import "$gpgKeysFile";
 mkdir -p "$build";
 mkdir -p "$target";
 cd "$build";
